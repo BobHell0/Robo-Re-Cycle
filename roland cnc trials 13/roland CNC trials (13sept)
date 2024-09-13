@@ -1,0 +1,18 @@
+wood screw trials (all 1mm path radius)
+trial 1: 6mm spot 4500 RPM Feed rate 10 mm/min off center	FAIL (stall, current overload)
+trial 2: 3mm bit 4500 RPM Feed rate 23 mm/min off center	SUCCESS 
+trial 3: 3mm bit 4500 RPM Feed rate 23 mm/min through hole	STOPPED EARLY (high tool deflection)
+
+st. steel trials
+trial 1: 6mm bit 4800 RPM Feed rate 100 mm/min 			FAIL (stall)
+trial 2: 6mm bit 4800 RPM Feed rate 35 mm/min (2mm path radius)	FAIL (stall)
+trial 3: 6mm spot 4800 RPM Feed rate 10 mm/min 			FAIL (stall)
+trial 4: 3mm bit 4500 RPM Feed rate 10 mm/min 			SUCCESS
+trial 5: 3mm bit 4500 RPM Feed rate 50 mm/min			SUCCESS (high load) 	
+
+hdd trials (went deeper than what may be necessary)
+trial 1: 3mm bit 4500 RPM Feed rate 10 mm/min (middle)		SUCCESS (10 min, 9 mm depth) (low load)
+trial 2: 3mm bit 4500 RPM Feed rate 20 mm/min (edge)		SUCCESS (5 min, 9 mm depth) (medium load)
+trial 3: 3mm bit 4500 RPM Feed rate 20 mm/min (center)		FAIL (stall, screwhead might have unscrewed 										itself a bit) 
+	
+(note: 3mm bit was worn out during (or before) trial. Need harder tool)
