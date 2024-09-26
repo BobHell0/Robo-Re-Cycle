@@ -1,3 +1,5 @@
+# The primary file used for training and re-training computer vision models
+
 from ultralytics import YOLO
 
 NUM_EPOCHS = 300

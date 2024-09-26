@@ -1,4 +1,6 @@
 # Code taken from: https://dipankarmedh1.medium.com/real-time-object-detection-with-yolo-and-webcam-enhancing-your-computer-vision-skills-861b97c78993
+# The file used to test a computer vision model using a webcam.
+# Useful for IF we choose to use a live camera to detect objects.
 
 from ultralytics import YOLO
 import cv2
@@ -9,7 +11,8 @@ import time
 cap = cv2.VideoCapture(0)
 
 # model
-model = YOLO("./Object Detection Data/runs/detect/train/weights/best.pt")
+modelFile = "./Object Detection Data/runs/detect/train/weights/best.pt"
+model = YOLO(modelFile)
 
 # object classes
 classNames = ["hole", "torx-screw"]
