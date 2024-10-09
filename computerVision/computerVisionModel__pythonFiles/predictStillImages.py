@@ -1,6 +1,6 @@
 from ultralytics import YOLO
 from writeCoordsToFile import writeCoords, clearCoordsFile
-from pixelToMillimetreConversion import pythag, convertPxToMm
+from pixelToMillimetreConversion import convertPxToMm
 
 ORIGIN_POINT = (266.7, 71.0)
 if __name__ == "__main__":
