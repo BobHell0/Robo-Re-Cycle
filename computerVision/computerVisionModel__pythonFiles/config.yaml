@@ -1,0 +1,29 @@
+# 'path' should be an absolute path (relative paths have issues)
+# refers to the path of the directory that stores both your images AND the corresponding labels
+
+path: <path_to_your_data>
+# 'train' and 'val' are relative to 'path'
+train: images
+val: images
+
+# Classes – based on your labels
+names:
+  0: screw-hole
+  1: torx-screw
+
+
+# Within your file system, YOLOv8 expects the directory at "path" to look like:
+# <main directory>                      refers to the directory provided by "path"
+#     images                            make sure this directory is specifically called images
+#         <all of your images>
+#     labels                            make sure this directory is specifically called labels
+#         <all of your corresponding labels"
+
+# An example directory structure can be found here: 
+# https://drive.google.com/drive/folders/1ckzzXhaF4hShms54dvsUQzWYDbapbKwV?usp=sharing
+
+
+# If you are still unsure as to how training a model works, I would recommend watching 
+# and copying the tutorial mentioned in trainModel.py (https://www.youtube.com/watch?v=m9fH9OWn8YM).
+# This tutorial goes through the steps of data collection, data annotation, 
+# organising your data and training your model.
