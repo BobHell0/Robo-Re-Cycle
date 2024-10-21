@@ -1,4 +1,4 @@
-# Screw To Ratio
+# Pixel To Millimetre Ratio
 
 ## Introduction and Motivation
 Our solution for disassembling a hard drive consists of various subsystems. In this section, the relevant subsystems to consider are the **Computer Vision system** and the **Roland MDX-50 milling machine**. The primary funciton of the computer vision system at the moment is to a) take a photograph of the hard drive at a constant position and b) view this photograph and determine the position of all of the screws. The milling machine should then take these screw positions as inputs and move to each of these locations to remove the screw.
@@ -34,17 +34,27 @@ Finding the pixel distances between each screw used the following method
 1. Place the hard drive and camera as I normally would when taking a photograph of the hard drive (see positioningTheCamera.md)
 2. Take a photograph of the hard drive
 3. Use MacOS's Preview Application and its **box tool** to find the pixel coordinates of each screw
-**<\image/> of pixel coordinates using Preview tool** 
+![Getting pixel coordinates using the Preview App](./docs_imgs/demonstratingGettingPxCoords.png "Getting pixel coordinates using the Preview App")
 4. Based on these pixel coordinates, find the pixel distances between each screw
 
 ## Results
 
-Screw Coordinates in Millimetres (courtesy of the Roland)
-**<\image/> of the millimetre coordinates**
+### Screw Coordinates in Millimetres (courtesy of the Roland)
+![Millimetre coordinates](./docs_imgs/millimetreCoordsOfScrews.png "Millimetre coordinates")
 
-Distances between each pair of screws (using distance formula sqrt([x2 - x1]^2 + [y2 - y1]^2))
-**<\image/> of the millimetre distances**
+### Distances between each pair of screws (using distance formula sqrt([x2 - x1]^2 + [y2 - y1]^2))
+![Millimetre distances between each pair of screws](./docs_imgs/mmDistancesBetweenScrews.png "Millimetre distances between each pair of screws")
 
-Screw Coordinates in Pixels
+### Screw Coordinates in Pixels
+![Pixel coordinates](./docs_imgs/pxCoordsOfScrews.png "Pixel coordinates")
 
-Distances between each pair of screws
+### Distances between each pair of screws
+![Millimetre distances between each pair of screws](./docs_imgs/pxDistancesBetweenScrews.png "Millimetre distances between each pair of screws")
+
+### Getting Possible Conversion Rates (Millimetre Distance / Pixel Distance)
+![Getting all conversion rate samples](./docs_imgs/conversionRates.png "Getting all conversion rate samples")
+
+### Averaging All Samples to Get the final object
+![Final average conversion rate and standard deviation](./docs_imgs/finalConversionRate.png "Final average conversion rate and standard deviation")
+
+
