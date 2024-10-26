@@ -21,6 +21,9 @@ rampDouble Servo4Ramp;
 
 const unsigned long t = 2000;
 
+////////////////////////////////////////////////////////////////////////////
+// const int clampPin = 13;  
+////////////////////////////////////////////////////////////////////////////
 
 int servoArmBase = 9;
 int servoBaseRotation = 10;
@@ -65,6 +68,10 @@ void setup() {
   //init to start pos
   rampToAngle(Servo1Ramp, Servo1, 180, t);
   rampToAngle(Servo3Ramp, Servo3, 50, t);
+
+//////////////////////////////////////////////////////////////////////////
+  // turnClampOff();
+//////////////////////////////////////////////////////////////////////////
 
   while (!Serial) {
     ;
@@ -136,6 +143,16 @@ void loop() {
       Serial.println(90);
       rampToAngle(Servo1Ramp, Servo1, 180, t);
       rampToAngle(Servo3Ramp, Servo3, 50, t);
+  
+///////////////////////////////////////////////////////////////////////////////
+/*
+    } else if  (inputString.startsWith("clamp on") {
+      turnClampOn();
+    } else if (inputString.startsWith("clamp off") {
+      turnClampOff();
+*/    
+///////////////////////////////////////////////////////////////////////////////
+    
     } else {
       Serial.println("invalid command");
     }
@@ -226,3 +243,19 @@ void rampToAngle(rampDouble& serRamp, Servo& servo, double motorRamp, unsigned l
      setArduinoAngle(servo, serRamp.update());
   }
 }
+
+////////////////////////////////////////////////////////////////////////////
+/*
+void turnClampOn() {
+  clampState = true;
+  digitalWrite(clampPin, HIGH); 
+  Serial.println("Clamp ON");
+}
+
+void turnClampOff() {
+  clampState = false;
+  digitalWrite(clampPin, LOW);  
+  Serial.println("Clamp OFF");
+}
+*/
+/////////////////////////////////////////////////////////////////////////////
