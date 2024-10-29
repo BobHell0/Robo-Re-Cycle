@@ -2,7 +2,7 @@ import serial
 import sys
 import time
 
-ser = serial.Serial('/dev/ttyUSB0', 115200, timeout = 5)
+ser = serial.Serial('COM4', 115200, timeout = 5)
 
 def readCmdResponse():
     response = ser.readlines()
@@ -44,18 +44,47 @@ def manualOff():
     
 def readBoot():
     print("waiting for start up\n")
-    time.sleep(3)
+    time.sleep(5)
     print("ready\n")
     status()
     printCmdResponse(readCmdResponse())
 
     print("End of Boot Up\n")
 
+def rotate(param1, param2):
+    cmdStr = "rotate " + str(param1) + ", " + str(param2)
+    byteCmdStr = cmdStr.encode('utf-8')
+    ser.write(byteCmdStr)
+    printCmdResponse(readCmdResponse())
+    time.sleep(1.5)
+
 readBoot()
 
-setMotor(3, 180)
+rotate(330, 1)
+
 setMotor(1, 120)
+
+setMotor(3, 160)
+
+setMotor(1, 180)
+
+setMotor(3, 120)
+
+#suction on
+
+setMotor(3, 160)
+
+setMotor(1, 140)
+
+rotate(380, -1)
+
+#drop plate
+
+rotate(100, 1)
+
 reset()
+
+rotate(50, -1)
 
 print("Closing Connection")
 ser.close()
