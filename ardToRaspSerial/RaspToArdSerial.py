@@ -2,7 +2,8 @@ import serial
 import sys
 import time
 
-ser = serial.Serial('COM4', 115200, timeout = 5)
+#ser = serial.Serial('COM4', 115200, timeout = 5)
+ser = serial.Serial('/dev/ttyUSB0', 115200, timeout = 5)
 
 def readCmdResponse():
     response = ser.readlines()
@@ -57,6 +58,34 @@ def rotate(param1, param2):
     ser.write(byteCmdStr)
     printCmdResponse(readCmdResponse())
     time.sleep(1.5)
+    
+def clampOn():
+	cmdStr = "clamp on"
+	byteCmdStr = cmdStr.encode('utf-8')
+	ser.write(byteCmdStr)
+	printCmdResponse(readCmdResponse())
+	time.sleep(1.5)
+    
+def clampOff():
+	cmdStr = "clamp off"
+	byteCmdStr = cmdStr.encode('utf-8')
+	ser.write(byteCmdStr)
+	printCmdResponse(readCmdResponse())
+	time.sleep(1.5)
+
+def suckerOn():
+	cmdStr = "sucker on"
+	byteCmdStr = cmdStr.encode('utf-8')
+	ser.write(byteCmdStr)
+	printCmdResponse(readCmdResponse())
+	time.sleep(1.5)
+
+def suckerOff():
+	cmdStr = "sucker off"
+	byteCmdStr = cmdStr.encode('utf-8')
+	ser.write(byteCmdStr)
+	printCmdResponse(readCmdResponse())
+	time.sleep(1.5)
 
 readBoot()
 
