@@ -58,3 +58,12 @@ Finding the pixel distances between each screw used the following method
 ![Final average conversion rate and standard deviation](./docs_imgs/finalConversionRate.png "Final average conversion rate and standard deviation")
 
 
+This is the value that we use in **pixelToMillimetreConversion.py**.
+
+## Restrictions and Improvements
+The method to generate the conversion rate is quite involved and results in a hard-coded value. This number is dependent on a few conditions present in the system:
+- ROI values of the camera change (see Raspberry Pi Camera Notes)
+- Camera position changes
+- Hard drive position changes
+
+The camera was also very carefully positioned such that before any ROI values were applied (that is, no cropping), the **centre of the hard drive** was at the **centre of the camera's** field of view. When this careful placement was not done, the samples gave a standard deviation that was approximately 10 times greater (see Google Slides Term 3; Anujan - Week 3 for specific results). The precise reason why uncareful placement causes greater variation in samples was not investigated but I would think that it has to do with perspective distortion of the camera – being closer to one corner of the hard drive means distances in that region seem smaller and distances in further away 
