@@ -1,0 +1,15 @@
+hdd trials with clamp (different roland machine with previous trial)
+trial 1: 3mm bit 6000 RPM Feed rate 20 mm/min (bottom right)		  FAIL (stall, overcurrent)
+trial 2: 3mm bit 4851 RPM Feed rate 194 mm/min (bottom centre)		FAIL (stall, overcurrent, went through most of the screw) (0.25 stepdown, 70% feedrate)
+trial 3: 3mm bit 4851 RPM Feed rate 194 mm/min (bottom left)  		SUCCESS (0.20 stepdown, 50% feedrate)
+
+NOTE:
+  - use calculations for machining power especially for low powered machines (https://www.machiningdoctor.com/calculators/machining-power/)
+  - take shallower cuts and more feed to ensure tool is cutting enough material per tooth
+  - running 20 mm/min is extremely slow, and most CNC machines will not be able to run with accuracy at a very low speed
+  - Feed Per Tooth = Spindle Speed (RPM) × Number of Teeth / Feed Rate (mm/min) 
+    i.e. running 4500 RPM at 20 mm/min with a 4 flute cutter produces a feed/tooth of 0.0011111111, essentially rubbing the material
+  - ​SFM of 150 and feed/tooth of 0.01 is considered in trial 2 and trial 3
+
+For future testing:
+  - either keep running current gcode and risk machine breakage or consider cutting in arcs, which is optimal for endmills

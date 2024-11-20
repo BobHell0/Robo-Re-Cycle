@@ -1,0 +1,8 @@
+hdd trials with clamp (different roland machine with previous trial)
+trial 1: 3mm bit 4500 RPM Feed rate 20 mm/min (top left)		SUCCESS (not deep enough to cut the whole screw head) (low load)
+trial 2: 3mm bit 4500 RPM Feed rate 40 mm/min (top left)		FAIL (stall, overcurrent, however load was not high on the panel) ('low' load)
+trial 3: 3mm bit 4500 RPM Feed rate 20 mm/min (top left)		FAIL (like previous) ('low' load)
+
+trial 3 managed to cut the screwhead before stalling, end mill was caught in the steel plate when retracting
+
+try 8000 RPM and/or lower stepdown next trial

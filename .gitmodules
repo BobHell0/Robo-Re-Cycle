@@ -1,0 +1,6 @@
+[submodule "GCodeGenerator"]
+	path = GCodeGenerator
+	url = https://github.com/QwertyYouJK/GCodeGen.git
+[submodule "GCodeGen"]
+	path = GCodeGen
+	url = https://github.com/QwertyYouJK/GCodeGen.git
