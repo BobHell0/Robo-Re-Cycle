@@ -15,8 +15,8 @@ NUM_EPOCHS = 300    # An Epoch refers to a layers or cycle of training – 300 e
 # build a new model from scratch
 model = YOLO("yolov8n.yaml")  
 
-# Alternatively you can retrain a model you have previously trained:
-
+# # Alternatively you can retrain a model you have previously trained:
+# # Uncomment the below two lines if you wish to retrain a model instead of training a fresh model
 # currentModel = <Path to model you want to retrian>
 # model = YOLO(currentModel)
 
