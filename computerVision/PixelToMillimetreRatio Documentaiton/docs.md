@@ -25,6 +25,7 @@ c. Contour detection is run on the binary image
 d. The largest contour is chosen – this should be the outer perimeter of the hard drive
 e. The **pixel** width and height of the contour is found
 
+Hard drive perimeter detection visulaised:
 ![Hard drive perimeter detection visulaised](harddrivePerimeterDetection.jpg)
 
 To see exactly how the image post processing works, see the **edgeDetection.py** script.
