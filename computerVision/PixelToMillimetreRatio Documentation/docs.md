@@ -28,7 +28,7 @@ e. The **pixel** width and height of the contour is found
 Hard drive perimeter detection visulaised:
 ![Hard drive perimeter detection visulaised](harddrivePerimeterDetection.jpg)
 
-To see exactly how the image post processing works, see the **edgeDetection.py** script.
+To see exactly how the image post processing works, see the **hardDriveFiltering.py** script.
 
 6. Since the width and height of our hard drives are fixed (145 mm by 101 mm), we can divide the real millimetre width by the pixel width to find the magic number that when multiplied by the pixel width, would give the true width of the hard drive. This gives us the HORIZONTAL_RATIO. Similarly we divide the real millimetre height by the pixel height ot find the VERTICAL_RATIO. 
 

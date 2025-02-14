@@ -1,48 +1,66 @@
+#!/Library/Frameworks/Python.framework/Versions/3.12/bin/python3
 from ultralytics import YOLO
 from writeCoordsToFile import writeCoords, clearCoordsFile
-from pixelToMillimetreConversion import convertPxToMm
+from pixelToMillimetreConversion import *
+from originFinding import *
 
-ORIGIN_POINT = (266.7, 71.0)    # How this was achieved can be read about in findingOrigin.md
+ORIGIN_POINT = (110.5, 122)
+MAX_ALLOWED_DISCREP = 2
+
 if __name__ == "__main__":
 
-    modelFile = "example.pt"        # This is the .pt file you get AFTER training an computer vision model
-    model = YOLO(f"{modelFile}")    # Lets us load up the already trained YOLOv8n model
+	# ORIGIN_POINT_MM = 
 
-    # Run batched inference on a list of images
-    imageFiles = "exampleImages"        # can either be a path to one image or a whole directory with images
+	# Load a model
 
-    # capturing the results in a variable called "results"
-    #   - save=True saves the images WITH bounding boxes in the same direcotry
-    #   - conf=0.01 lets you set the THRESHOLD CONFIDENCE (to 1% in this case)
-    #   - iou refers to likelyhood of overlap – 0.1 means there shouldn't be overlapping bounding boxes
 
-    results = model.predict(f"{imageFiles}", save=True, imgsz=320, conf=0.01, iou=0.1)
+	# Run batched inference on a list of images
+	modelFile = "runs/detect/train/weights/best.pt"
 
-    # Extract bounding boxes, classes, names, and confidences
-    boxes = results[0].boxes.xyxy.tolist()
-    # classes = results[0].boxes.cls.tolist()
-    # names = results[0].names
-    # confidences = results[0].boxes.conf.tolist()
+	model = YOLO(f"{modelFile}")  # pretrained YOLOv8n model
+	imageFiles = f"/Users/unswaccount/Desktop/picsWIthGreenOrigin/test1.jpg"
 
-    # Iterate through the results
-    clearCoordsFile()
-    # for box, cls, conf in zip(boxes, classes, confidences):
-    for box in boxes:
-        x1, y1, x2, y2 = box
-        # confidence = conf
-        # detected_class = cls
-        # name = names[int(cls)]
+	horizontalRatio, verticalRatio = calculateHorizontalAndVerticalRatio(imageFiles)
+	pixelOrigin = findOrigin(imageFiles)
 
-        centreX = (x1 + x2) / 2
-        centreY = (y1 + y2) / 2
+
+	results = model.predict(f"{imageFiles}", save=True, imgsz=320, conf=0.50, iou=0.1)
+
+	# Extract bounding boxes, classes, names, and confidences
+	boxes = results[0].boxes.xyxy.tolist()
+	classes = results[0].boxes.cls.tolist()
+	names = results[0].names
+	confidences = results[0].boxes.conf.tolist()
+
+	# Iterate through the results
+	clearCoordsFile()
+	
         
-        # This conversion process requires the PIXEL_TO_MM ratio. How this ratio
-        # was determined can be read about in findingPxToMMRatio.md
-        converted_CentreX = convertPxToMm(centreX)
-        converted_CentreY = convertPxToMm(centreY)
+	for box, cls, conf in zip(boxes, classes, confidences):
+			
+		x1, y1, x2, y2 = box
+		confidence = conf
+		detected_class = cls
+		name = names[int(cls)]
+		centreX = (x1 + x2) / 2
+		centreY = (y1 + y2) / 2
 
 
-        # Writes the finalised, global coordinates to a file for the Roland to use
-        # to approach a screw    
-        writeCoords(ORIGIN_POINT[0] - converted_CentreX, ORIGIN_POINT[1] + converted_CentreY)
+		displacementX = centreX - pixelOrigin[0]
+		displacementY = centreY - pixelOrigin[1]
+
+		convertedDisplacementX = convertPxToMm(displacementX, horizontalRatio)
+		convertedDisplacementY = convertPxToMm(displacementY, verticalRatio)
+
+        # Current way of handling distortion
+        # Read up on raspberry pi camera documenation at RasberryPiCamera.md
+        # TODO: undistort images
+
+        # if converted_CentreY < 120:
+        #     converted_CentreX += 2
+
+		estimateX = ORIGIN_POINT[0] - convertedDisplacementX
+		estimateY = ORIGIN_POINT[1] + convertedDisplacementY
+
+		writeCoords(estimateX, estimateY)
         
